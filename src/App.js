@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import { useState } from "react"
 
 function App() {
+  const [btnColor, setBtnColor] = useState("green")
+  const newBtnColor = btnColor === "green" ? "blue" : "green"
+  const [inputDisabled, setInputDisabled] = useState(false)
+  const [message, setMessage] = useState('Button is enabled')
+  const newMessage = message === "Button is enabled" ? "Button is disabled" : "Button is enabled"
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Testing Playground</h1>
+      <p role="paragraph">{message}</p>
+      <button
+        style={{ backgroundColor: btnColor }}
+        onClick={() => setBtnColor(newBtnColor)}
+        disabled={inputDisabled}
+      >
+        Change button color to {newBtnColor}
+      </button>
+
+      <input
+        type="checkbox"
+        defaultChecked={inputDisabled}
+        onChange={(event) => setInputDisabled(event.target.checked) }
+        onClick={() => setMessage(newMessage)}
+      />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
